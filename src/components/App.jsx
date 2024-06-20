@@ -19,7 +19,7 @@ export class App extends Component {
     return (
       <div>
         <h2>Phonebook</h2>
-        <ContactForm />
+        <ContactForm name={this.name} id={this.id} />
         <h2>Contacts</h2>
         <ContactListItem />
       </div>
