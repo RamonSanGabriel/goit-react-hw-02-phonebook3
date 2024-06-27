@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-
+import { nanoid } from 'nanoid';
 export class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-  handleChange = e => {
-    const { name, number } = e.target;
+  handleNameChange = e => {
+    this.setState({
+      name: e.target.value,
+    });
+  };
+  handleNumberChange = e => {
+    this.setState({
+      number: e.target.value,
+    });
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -23,11 +30,12 @@ export class ContactForm extends Component {
           <input
             type="text"
             name="name"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
             required
             value={name}
-            onChange={this.handleChange}
+            onChange={this.handleNameChange}
           />
         </label>
         <label>
@@ -35,9 +43,12 @@ export class ContactForm extends Component {
           <input
             type="tel"
             name="number"
+            // pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
             pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
             required
+            value={number}
+            onChange={this.handleNumberChange}
           />
         </label>
       </form>

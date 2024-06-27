@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactListItem } from './ContactListItem/ContactListItem';
-// import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -32,7 +31,7 @@ export class App extends Component {
 
         <h2>Contacts</h2>
 
-        {/* <ContactListItem /> */}
+        <ContactListItem />
       </div>
     );
   }
