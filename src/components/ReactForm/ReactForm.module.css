@@ -1,0 +1,28 @@
+.reactForm {
+  display: block;
+}
+.reactFormLabel {
+  /* display: block; */
+}
+
+.reactFormInput {
+  display: block;
+  outline: none;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 10px;
+
+  @media (width > 767px) {
+    display: flex;
+  }
+}
+
+span {
+  font-size: 0.625rem;
+  color: #920303;
+}
+
+h5 {
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+}
