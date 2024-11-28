@@ -1,38 +1,64 @@
-import { Component } from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactListItem } from './ContactListItem/ContactListItem';
+import { useForm } from 'react-hook-form';
+import Header from './Header/Header';
 
-export class App extends Component {
-  state = {
-    contact: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    filter: '',
-    name: '',
-    number: '',
+let renderCount = 0;
+
+const App = () => {
+  renderCount++;
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+    },
+  });
+  // Import the userForm hook
+
+  const onSubmit = data => {
+    console.log(data);
   };
-  addContact = newContact => {
-    this.setState(prevState => ({
-      contact: [...prevState.contact, newContact],
-    }));
-  };
-  render() {
-    const { contact, addContact, newContact } = this.state;
 
-    return (
-      <div>
-        <h2>Phonebook</h2>
-        <ContactForm />
+  // console.log(errors);
+  const form = watch();
+  return (
+    <div>
+      <Header renderCount={renderCount} />
+      <h1>React Forms</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="firstName">
+          First name
+          <input
+            {...register('firstName', { required: 'This is required' })}
+            id="firstName"
+            title=""
+          />
+          <p>{errors.firstName?.message}</p>
+        </label>
+        <label htmlFor="lastName">
+          Last name
+          <input
+            {...register('lastName', {
+              required: 'This is required',
+              minLength: {
+                value: 4,
+                message: 'Min length is 4',
+              },
+            })}
+            id="lastName"
+            title=""
+          />
+          <p>{errors.lastName?.message}</p>
+        </label>
 
-        <button onClick={this.addContact}>Add Contact</button>
-
-        <h2>Contacts</h2>
-
-        <ContactListItem />
-      </div>
-    );
-  }
-}
+        <input type="submit" />
+        <p>{form}</p>
+      </form>
+    </div>
+  );
+};
+export default App;
