@@ -1,3 +1,5 @@
+import { hover } from '@testing-library/user-event/dist/hover';
+
 export const myStyle = {
   backgroundColor: 'tomato',
   padding: '3px',
@@ -6,6 +8,10 @@ export const myStyle = {
   fontSize: '1rem',
   display: 'block',
   border: 'none',
-  borderRadius: '12px',
+  borderRadius: '5px',
   cursor: 'pointer',
+  margin: '2px 6px',
+  hover: {
+    backgroundColor: 'red',
+  },
 };
