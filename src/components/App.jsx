@@ -1,14 +1,11 @@
-import Header from './Header/Header';
-import { LoginForm } from './LoginForm/LoginForm';
-import ReactForm from './ReactForm/ReactForm';
+import YouTubeHeader from './Header/YouTubeHeader/YouTubeHeader';
+import YouTubeForm from './ReactForm/YoutubeForm/YouTubeForm';
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <h1>React Forms</h1>
-      <ReactForm />
-      {/* <LoginForm /> */}
+      <YouTubeHeader />
+      <YouTubeForm />
     </div>
   );
 };

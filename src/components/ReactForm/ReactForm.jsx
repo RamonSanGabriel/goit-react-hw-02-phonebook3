@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import css from './ReactForm.module.css';
 import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
 
+let counter = 0;
+
 const ReactForm = () => {
   const {
     register,
@@ -12,17 +14,23 @@ const ReactForm = () => {
     defaultValues: {
       firstName: '',
       lastName: '',
+      counter: '',
     },
   }); // Import the userForm hook
-
-  let counter = 0;
 
   const onSubmit = data => {
     // console.log(data);
     counter++;
   };
 
+  /*  const handleSubmit = e => {
+    e.preventDefault();
+    alert('button is working');
+    // counter++;
+  }; */
   // console.log(errors);
+
+  /* Display text from Input box first name */
   const firstName = watch('firstName');
 
   return (
@@ -30,7 +38,8 @@ const ReactForm = () => {
       <div>
         <form className={css.reactForm} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.reactFormLabel} htmlFor="firstName">
-            <p>Render: {counter++}</p>
+            <p>Render: {counter}</p>
+            {/* Input First name */}
             <h5>First name</h5>
             <input
               className={css.reactFormInput}
@@ -58,7 +67,8 @@ const ReactForm = () => {
             )}
             {/* <p>{errors.firstName?.message}</p> */}
           </label>
-          {/* Input lastName */}
+
+          {/* Input Last name */}
           <label className={css.reactFormLabel} htmlFor="lastName">
             <h5>Last name</h5>
             <input
@@ -90,9 +100,34 @@ const ReactForm = () => {
             )}
             {/* <p>{errors.lastName?.message}</p> */}
           </label>
+          {/* Input email */}
+          <h5>Email</h5>
+          <div className={css.group}>
+            <input
+              className={css.reactFormInput}
+              {...register('email', {
+                required: 'Required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'invalid email address',
+                },
+              })}
+              type="email"
+              placeholder="Enter your email"
+            />
+            {errors.email && errors.email.message}
+          </div>
           <p>{firstName}</p>
           {/* <input name="submit" id="submit" type="submit" value="submit" /> */}
           <SubmitBtn />
+          {/* <div style={{ margin: '15px 0' }}>
+            <input
+              className={css.submitBtn}
+              // style={myStyle}
+              type="submit"
+              onSubmit={handleSubmit}
+            />
+          </div> */}
         </form>
       </div>
     </div>

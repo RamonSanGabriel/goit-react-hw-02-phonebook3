@@ -1,5 +1,3 @@
-import { hover } from '@testing-library/user-event/dist/hover';
-
 export const myStyle = {
   backgroundColor: 'tomato',
   padding: '3px',
