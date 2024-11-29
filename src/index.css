@@ -24,11 +24,52 @@ input[type='email'],
 input[type='number'],
 input[type='date'] {
   display: block;
-  width: 400px;
+  width: 100%;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
+  /* margin: 0 auto; */
+
+  @media (width > 767px) {
+    margin: 0;
+    width: 400px;
+  }
+}
+button {
+  background: #ff4742;
+  border: 1px solid #ff4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, 'proxima nova', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 0.75rem;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 34px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  /* margin: 5px 5px; */
+
+  &:hover,
+  &:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #ff4742;
+  }
+}
+button:active {
+  opacity: 0.5;
 }

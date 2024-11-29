@@ -3,7 +3,11 @@ import YouTubeForm from './ReactForm/YoutubeForm/YouTubeForm';
 
 const App = () => {
   return (
-    <div>
+    <div
+      style={{
+        padding: '20px 20px',
+      }}
+    >
       <YouTubeHeader />
       <YouTubeForm />
     </div>

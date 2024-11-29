@@ -7,3 +7,29 @@
 .formControl {
   margin-bottom: 20px;
 }
+
+.formBtnAdd {
+  background-color: #4caf50;
+  border: 1px solid #4caf50;
+  &:hover,
+  &:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #4caf50;
+  }
+}
+
+.submitBtn {
+  background: #4245ff;
+  border: 1px solid #4245ff;
+}
+.submitBtn:hover,
+.submitBtn:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #4245ff;
+}
+
+.submitBtn:active {
+  opacity: 0.5;
+}

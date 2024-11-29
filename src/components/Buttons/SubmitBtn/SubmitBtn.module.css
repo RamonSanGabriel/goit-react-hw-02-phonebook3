@@ -1,33 +1,12 @@
 .submitBtn {
-  background: #ff4742;
-  border: 1px solid #ff4742;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, 'proxima nova', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 800;
-  line-height: 0.75rem;
-  min-height: 40px;
-  outline: 0;
-  padding: 12px 34px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  margin: 20px 20px;
+  background: #4245ff;
+  border: 1px solid #4245ff;
 }
 .submitBtn:hover,
 .submitBtn:active {
   background-color: initial;
   background-position: 0 0;
-  color: #ff4742;
+  color: #4245ff;
 }
 
 .submitBtn:active {
