@@ -157,7 +157,7 @@ const YouTubeForm = () => {
                 },
               })}
             />
-            <p className={css.errors}>{errors.age?.message}</p>
+            <p className={css.errors}>{errors.date?.message}</p>
           </div>
           {/* List of phone numbers with delete button if more than 1 number */}
           <div className={css.formControl}>
