@@ -1,6 +1,6 @@
 .formDiv {
   margin: 0 auto;
-  padding: 0 80px;
+  /* padding: 0 80px; */
   @media (width > 767px) {
     display: flex;
     flex-direction: column;

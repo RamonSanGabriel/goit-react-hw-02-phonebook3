@@ -43,7 +43,7 @@ const YouTubeForm = () => {
 
   return (
     <div>
-      <div style={{ padding: '20px' }}>
+      <div style={{ paddingRight: '20px' }}>
         <h2>RenderCount: {renderCounter / 2}</h2>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className={css.formControl}>
