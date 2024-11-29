@@ -32,13 +32,3 @@ input[type='date'] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.error {
-  color: red;
-  font-size: 12px;
-  text-align: left;
-}
-
-.form-control {
-  margin-bottom: 20px;
-}
