@@ -61,7 +61,7 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
-  /* margin: 5px 5px; */
+  margin-top: 20px;
 
   &:hover,
   &:active {
