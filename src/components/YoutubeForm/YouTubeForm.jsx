@@ -2,7 +2,6 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import css from './YouTubeForm.module.css';
 import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
-import GetValuesBtn from 'components/Buttons/GetValuesBtn/GetValuesBtn';
 
 let renderCounter = 0;
 
@@ -157,7 +156,6 @@ const YouTubeForm = () => {
                   message: 'Age is required*',
                 },
                 disabled: watch('channel') === '',
-                required: 'Channel field must not be empty*',
               })}
             />
             <p className={css.errors}>{errors.age?.message}</p>
