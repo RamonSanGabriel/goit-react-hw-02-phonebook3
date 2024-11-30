@@ -1,7 +1,9 @@
+import css from './Header.module.css';
+
 const Header = () => {
   return (
     <div>
-      <h1>YouTube React Form</h1>
+      <h1 className={css.header}>YouTube React Form</h1>
     </div>
   );
 };
