@@ -1,6 +1,6 @@
 import Footer from './Footer/Footer';
 import YouTubeHeader from './Header/YouTubeHeader/YouTubeHeader';
-import YouTubeForm from './ReactForm/YoutubeForm/YouTubeForm';
+import YouTubeForm from './YoutubeForm/YouTubeForm';
 
 const App = () => {
   return (

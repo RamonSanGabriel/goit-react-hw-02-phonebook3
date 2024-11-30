@@ -2,6 +2,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import css from './YouTubeForm.module.css';
 import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
+import GetValuesBtn from 'components/Buttons/GetValuesBtn/GetValuesBtn';
 
 let renderCounter = 0;
 
@@ -14,7 +15,7 @@ let renderCounter = 0;
 const YouTubeForm = () => {
   const form = useForm({
     defaultValues: {
-      username: '',
+      username: 'Superman',
       email: '',
       channel: '',
       phoneNumbers: {
@@ -29,23 +30,40 @@ const YouTubeForm = () => {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    getValues,
+    setValue,
+    formState: { errors, touchedFields, dirtyFields, isDirty },
   } = form;
+
+  console.log({ touchedFields, dirtyFields, isDirty });
 
   const { fields, append, remove } = useFieldArray({
     name: 'phoneNumbers',
     control,
   });
-
+  const handleGetValues = () => {
+    console.log('Get values', getValues('username'));
+  };
+  const handleSetValues = () => {
+    setValue('username', '', {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
   const onSubmit = data => console.log('Form submitted', data);
   const watchUsername = watch('username');
+  const onError = errors => {
+    console.log('Error', errors);
+  };
+
   renderCounter++;
 
   return (
     <div>
       <div style={{ paddingRight: '20px' }}>
         <h2>RenderCount: {renderCounter / 2}</h2>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
           <div className={css.formControl}>
             <label htmlFor="username">Username</label>
             <input
@@ -138,6 +156,8 @@ const YouTubeForm = () => {
                   value: true,
                   message: 'Age is required*',
                 },
+                disabled: watch('channel') === '',
+                required: 'Channel field must not be empty*',
               })}
             />
             <p className={css.errors}>{errors.age?.message}</p>
@@ -198,10 +218,23 @@ const YouTubeForm = () => {
               </button>
             </div>
           </div>
+          {/* Get Value Button */}
+          <button
+            className={css.getValuesBtn}
+            type="button"
+            onClick={handleGetValues}
+          >
+            Get Values
+          </button>
+          {/* Set Value Button */}
+          <button
+            className={css.setValuesBtn}
+            type="button"
+            onClick={handleSetValues}
+          >
+            Set Values
+          </button>
 
-          {/*   <button className={css.submitBtn} type="button">
-          Submit
-        </button> */}
           <SubmitBtn />
         </form>
         <DevTool control={control} />

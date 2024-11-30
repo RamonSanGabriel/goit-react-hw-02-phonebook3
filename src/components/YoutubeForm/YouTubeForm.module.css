@@ -33,3 +33,32 @@
 .submitBtn:active {
   opacity: 0.5;
 }
+.getValuesBtn {
+  background: #ff4265;
+  border: 1px solid #ff4265;
+}
+.getValuesBtn:hover,
+.getValuesBtn:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4265;
+}
+
+.getValuesBtn:active {
+  opacity: 0.5;
+}
+
+.setValuesBtn {
+  background: #42ecff;
+  border: 1px solid #42ecff;
+}
+.setValuesBtn:hover,
+.setValuesBtn:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #42ecff;
+}
+
+.setValuesBtn:active {
+  opacity: 0.5;
+}
