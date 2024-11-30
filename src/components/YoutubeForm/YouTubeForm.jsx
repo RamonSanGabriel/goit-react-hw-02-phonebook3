@@ -185,11 +185,11 @@ const YouTubeForm = () => {
                   return (
                     <div className={css.formControl} key={field.id}>
                       <input
-                        type="number"
+                        type="text"
                         id="phone"
                         autoComplete="off"
                         placeholder="Enter your phone number"
-                        {...register(`phoneNumbers${index}.number`, {
+                        {...register(`phoneNumbers.${index}.number`, {
                           valueAsNumber: true,
                           required: {
                             value: true,
@@ -217,7 +217,7 @@ const YouTubeForm = () => {
                   type="button"
                   onClick={() => append({ number: '' })}
                 >
-                  Add
+                  Add phone number
                 </button>
               </>
             </div>
