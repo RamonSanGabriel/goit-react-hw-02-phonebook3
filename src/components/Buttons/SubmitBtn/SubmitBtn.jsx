@@ -8,8 +8,8 @@ const SubmitBtn = ({ isValid, isDirty }) => {
       <button
         disabled={!isDirty || isValid}
         className={css.submitBtn}
-        /*      onClick={onSubmit}
-        type="submit" */
+        onClick={onSubmit}
+        type="submit"
       >
         Submit
       </button>
