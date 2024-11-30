@@ -5,23 +5,21 @@ import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
 
 let renderCounter = 0;
 
-/* type FormValues = {
-  username: string,
-  email: string,
-  channel: String,
-}; */
-
 const YouTubeForm = () => {
   const form = useForm({
     defaultValues: {
       username: '',
       email: '',
       channel: '',
-      phoneNumbers: {
-        number: [{ number: '' }],
-        age: 0,
-        dob: new Date(),
-      },
+      // number: [{ number: '' }],
+      age: 0,
+      dob: new Date(),
+      phoneNumbers: ['', ''],
+      phNumbers: [
+        {
+          number: '',
+        },
+      ],
     },
   });
   const {
@@ -37,9 +35,10 @@ const YouTubeForm = () => {
   console.log({ touchedFields, dirtyFields, isDirty, isValid });
 
   const { fields, append, remove } = useFieldArray({
-    name: 'phoneNumbers',
+    name: 'phNumber',
     control,
   });
+
   const handleGetValues = () => {
     console.log('Get values', getValues('username'));
   };
@@ -180,8 +179,8 @@ const YouTubeForm = () => {
             </div>
             {/* List of phone numbers with delete button if more than 1 number */}
             <div className={css.formControl}>
-              <label htmlFor="">List of phone numbers</label>
-              <div>
+              <label htmlFor="phone">List of phone numbers</label>
+              <>
                 {fields.map((field, index) => {
                   return (
                     <div className={css.formControl} key={field.id}>
@@ -200,7 +199,11 @@ const YouTubeForm = () => {
                       />
                       {/* Show delete button */}
                       {index > 0 && (
-                        <button type="button" onClick={() => remove(index)}>
+                        <button
+                          className={css.deleteBtn}
+                          type="button"
+                          onClick={() => remove(index)}
+                        >
                           Delete
                         </button>
                       )}
@@ -216,28 +219,30 @@ const YouTubeForm = () => {
                 >
                   Add
                 </button>
-              </div>
+              </>
             </div>
 
-            {/* Get Value Button */}
-            <button
-              className={css.getValuesBtn}
-              type="button"
-              onClick={handleGetValues}
-            >
-              Get Values
-            </button>
+            <div style={{ textAlign: 'left' }}>
+              {/* Get Value Button */}
+              <button
+                className={css.getValuesBtn}
+                type="button"
+                onClick={handleGetValues}
+              >
+                Get Values
+              </button>
 
-            {/* Set Value Button */}
-            <button
-              className={css.setValuesBtn}
-              type="button"
-              onClick={handleSetValues}
-            >
-              Set Values
-            </button>
+              {/* Set Value Button */}
+              <button
+                className={css.setValuesBtn}
+                type="button"
+                onClick={handleSetValues}
+              >
+                Set Values
+              </button>
 
-            <SubmitBtn isValid={isValid} isDirty={isDirty} />
+              <SubmitBtn isValid={isValid} isDirty={isDirty} />
+            </div>
           </form>
           <DevTool control={control} />
         </div>
