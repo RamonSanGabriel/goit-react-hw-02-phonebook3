@@ -23,7 +23,8 @@ label {
 input[type='text'],
 input[type='email'],
 input[type='number'],
-input[type='date'] {
+input[type='date'],
+input[type='phone'] {
   display: block;
   /* width: 100%; */
   padding: 6px 12px;
@@ -33,16 +34,16 @@ input[type='date'] {
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
-  /* margin: 0 auto; */
+  /* margin: 10px auto; */
 
   @media (width > 767px) {
     margin: 0;
     width: 400px;
   }
 }
-input[type='number'] {
+/* input[type='number'] {
   margin: 10px 0 0;
-}
+} */
 button {
   background: #ff4742;
   border: 1px solid #ff4742;

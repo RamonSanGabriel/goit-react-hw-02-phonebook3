@@ -19,6 +19,7 @@ h2 {
 .formControl {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .formBtnAdd {
