@@ -47,7 +47,7 @@ input[type='phone'] {
 button {
   background: #ff4742;
   border: 1px solid #ff4742;
-  border-radius: 6px;
+  border-radius: 24px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   box-sizing: border-box;
   color: #ffffff;
@@ -68,6 +68,7 @@ button {
   touch-action: manipulation;
   vertical-align: middle;
   margin: 10px 0 20px;
+  width: 100%;
 
   &:hover,
   &:active {

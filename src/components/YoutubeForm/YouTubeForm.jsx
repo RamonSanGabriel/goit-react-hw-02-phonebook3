@@ -1,7 +1,12 @@
 import { useForm, useFieldArray } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
+// import { DevTool } from '@hookform/devtools';
+import { btnContainer } from '../../data/submitBtnStyle';
 import css from './YouTubeForm.module.css';
 import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
+import GetValueBtn from 'components/Buttons/GetValueBtn/GetValueBtn';
+import SetValuesBtn from 'components/Buttons/SetValuesBtn/SetValuesBtn';
+import AddBtn from 'components/Buttons/AddBtn/AddBtn';
+import DeleteBtn from 'components/Buttons/DeleteBtn/DeleteBtn';
 
 let renderCounter = 0;
 
@@ -15,11 +20,14 @@ const YouTubeForm = () => {
       age: 0,
       dob: new Date(),
       phoneNumbers: ['', ''],
-      phNumbers: {
-        number: '',
-      },
+      phNumbers: [
+        {
+          number: '',
+        },
+      ],
     },
   });
+
   const {
     register,
     control,
@@ -27,6 +35,7 @@ const YouTubeForm = () => {
     watch,
     getValues,
     setValue,
+
     formState: { errors, touchedFields, dirtyFields, isDirty, isValid },
   } = form;
 
@@ -48,6 +57,22 @@ const YouTubeForm = () => {
     });
   };
   const onSubmit = data => console.log('Form submitted', data);
+
+  /*   const isDisabled = ({ isDirty, isValid }) => {
+    // return !isDirty || !isValid;
+    if (isDirty && isValid === true) {
+      return alert('Fill out form fields');
+    } else {
+      console.log('Submit button is enabled');
+    }
+  }; */
+  const isDisabled = ({ isDirty, isValid }) => {
+    if (isDirty && isValid === false) {
+      alert('Fill out form fields');
+    } else {
+      console.log('Submit button is enabled');
+    }
+  };
   const watchUsername = watch('username');
   const onError = errors => {
     console.log('Error', errors);
@@ -175,9 +200,28 @@ const YouTubeForm = () => {
               />
               <p className={css.errors}>{errors.date?.message}</p>
             </div>
+
+            {/* Phone number input */}
+            <div className={css.formControl}>
+              <label htmlFor="primaryPhone">Primary number</label>
+              <input
+                type="text"
+                id="primaryPhone"
+                autoComplete="off"
+                placeholder="Enter your primary number"
+                {...register('phoneNumbers.0', {
+                  valueAsNumber: true,
+                  required: {
+                    value: true,
+                    message: 'Phone number is required*',
+                  },
+                })}
+              />
+              <p className={css.errors}>{errors.primaryPhone?.message}</p>
+            </div>
             {/* List of phone numbers with delete button if more than 1 number */}
             <div className={css.formControl}>
-              <label htmlFor="phone">List of phone numbers</label>
+              <label htmlFor="phone">Additional phone numbers</label>
               <>
                 {fields.map((field, index) => {
                   return (
@@ -186,8 +230,8 @@ const YouTubeForm = () => {
                         type="text"
                         id="phone"
                         autoComplete="off"
-                        placeholder="Enter your phone number"
-                        {...register(`phoneNumbers.${index}.number`, {
+                        placeholder="Enter your alternate number"
+                        {...register(`phNumbers.${index}.number`, {
                           valueAsNumber: true,
                           required: {
                             value: true,
@@ -196,53 +240,32 @@ const YouTubeForm = () => {
                         })}
                       />
                       {/* Show delete button */}
-                      {index > 0 && (
-                        <button
-                          className={css.deleteBtn}
-                          type="button"
-                          onClick={() => remove(index)}
-                        >
-                          Delete
-                        </button>
-                      )}
+                      <DeleteBtn remove={remove} index={index} />
                     </div>
                   );
                 })}
 
                 {/* Add button */}
-                <button
-                  className={css.formBtnAdd}
-                  type="button"
-                  onClick={() => append({ number: '' })}
-                >
-                  Add phone number
-                </button>
+                <AddBtn append={append} />
               </>
             </div>
 
-            <div style={{ textAlign: 'left' }}>
+            <div style={btnContainer}>
               {/* Get Value Button */}
-              <button
-                className={css.getValuesBtn}
-                type="button"
-                onClick={handleGetValues}
-              >
-                Get Values
-              </button>
+              <GetValueBtn handleGetValues={handleGetValues} />
 
               {/* Set Value Button */}
-              <button
-                className={css.setValuesBtn}
-                type="button"
-                onClick={handleSetValues}
-              >
-                Set Values
-              </button>
+              <SetValuesBtn handleSetValues={handleSetValues} />
 
-              <SubmitBtn isValid={isValid} isDirty={isDirty} />
+              {/* Submit Button */}
+              <SubmitBtn
+                isDirty={isDirty}
+                isValid={isValid}
+                onSubmit={onSubmit}
+              />
             </div>
           </form>
-          <DevTool control={control} />
+          {/* <DevTool control={control} /> */}
         </div>
       </div>
     </div>

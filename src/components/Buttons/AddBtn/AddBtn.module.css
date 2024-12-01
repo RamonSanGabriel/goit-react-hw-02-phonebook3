@@ -1,0 +1,11 @@
+.addBtn {
+  background-color: #4caf50;
+  border: 1px solid #4caf50;
+  width: 100%;
+  &:hover,
+  &:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #4caf50;
+  }
+}

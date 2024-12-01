@@ -1,0 +1,14 @@
+.setValuesBtn {
+  background: #42ecff;
+  border: 1px solid #42ecff;
+}
+.setValuesBtn:hover,
+.setValuesBtn:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #42ecff;
+}
+
+.setValuesBtn:active {
+  opacity: 0.5;
+}
