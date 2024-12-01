@@ -35,7 +35,7 @@ const YouTubeForm = () => {
   console.log({ touchedFields, dirtyFields, isDirty, isValid });
 
   const { fields, append, remove } = useFieldArray({
-    name: 'phNumber',
+    name: 'phNumbers',
     control,
   });
 
