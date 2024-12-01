@@ -1,6 +1,6 @@
 import css from './SubmitBtn.module.css';
 
-const SubmitBtn = ({ isDirty, isValid, onSubmit }) => {
+const SubmitBtn = ({ isDirty, isValid, onSubmit, isSubmitting }) => {
   /*   const isDirty = props.isDirty;
   const isValid = props.isValid; */
 
@@ -13,7 +13,7 @@ const SubmitBtn = ({ isDirty, isValid, onSubmit }) => {
       <button
         className={css.submitBtn}
         onClick={onSubmit}
-        // disabled={!isDirty || !isValid}
+        disabled={!isDirty || !isValid || isSubmitting}
       >
         Submit
       </button>

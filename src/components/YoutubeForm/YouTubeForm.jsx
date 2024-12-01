@@ -13,7 +13,7 @@ let renderCounter = 0;
 const YouTubeForm = () => {
   const form = useForm({
     defaultValues: {
-      username: '',
+      username: 'Superman',
       email: '',
       channel: '',
       // number: [{ number: '' }],
@@ -36,10 +36,21 @@ const YouTubeForm = () => {
     getValues,
     setValue,
 
-    formState: { errors, touchedFields, dirtyFields, isDirty, isValid },
+    formState: {
+      errors,
+      touchedFields,
+      dirtyFields,
+      isDirty,
+      isValid,
+      isSubmitting,
+      isSubmitted,
+      isSubmitSuccessful,
+      submitCount,
+    },
   } = form;
 
-  console.log({ touchedFields, dirtyFields, isDirty, isValid });
+  // console.log({ touchedFields, dirtyFields, isDirty, isValid });
+  console.log({ isSubmitting, isSubmitted, isSubmitSuccessful, submitCount });
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumbers',
@@ -56,7 +67,7 @@ const YouTubeForm = () => {
       shouldTouch: true,
     });
   };
-  const onSubmit = data => console.log('Form submitted', data);
+  const onSubmit = () => console.log('Form submitted');
 
   const watchUsername = watch('username');
   const onError = errors => {
@@ -246,6 +257,7 @@ const YouTubeForm = () => {
               isDirty={isDirty}
               isValid={isValid}
               onSubmit={onSubmit}
+              isSubmitting={isSubmitting}
             />
           </div>
         </form>
