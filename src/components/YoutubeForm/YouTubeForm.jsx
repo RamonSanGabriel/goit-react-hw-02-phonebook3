@@ -58,21 +58,6 @@ const YouTubeForm = () => {
   };
   const onSubmit = data => console.log('Form submitted', data);
 
-  /*   const isDisabled = ({ isDirty, isValid }) => {
-    // return !isDirty || !isValid;
-    if (isDirty && isValid === true) {
-      return alert('Fill out form fields');
-    } else {
-      console.log('Submit button is enabled');
-    }
-  }; */
-  const isDisabled = ({ isDirty, isValid }) => {
-    if (isDirty && isValid === false) {
-      alert('Fill out form fields');
-    } else {
-      console.log('Submit button is enabled');
-    }
-  };
   const watchUsername = watch('username');
   const onError = errors => {
     console.log('Error', errors);
