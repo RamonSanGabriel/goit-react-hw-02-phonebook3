@@ -1,12 +1,14 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 // import { DevTool } from '@hookform/devtools';
-import { btnContainer } from '../../data/buttons';
 import css from './YouTubeForm.module.css';
 import SubmitBtn from 'components/Buttons/SubmitBtn/SubmitBtn';
 import GetValueBtn from 'components/Buttons/GetValueBtn/GetValueBtn';
 import SetValuesBtn from 'components/Buttons/SetValuesBtn/SetValuesBtn';
 import AddBtn from 'components/Buttons/AddBtn/AddBtn';
 import DeleteBtn from 'components/Buttons/DeleteBtn/DeleteBtn';
+import ResetBtn from 'components/Buttons/ResetBtn/ResetBtn';
+import { useEffect } from 'react';
+import ValidateBtn from 'components/Buttons/ValidateBtn/ValidateBtn';
 
 let renderCounter = 0;
 
@@ -26,6 +28,7 @@ const YouTubeForm = () => {
         },
       ],
     },
+    mode: 'onSubmit',
   });
 
   const {
@@ -35,7 +38,8 @@ const YouTubeForm = () => {
     watch,
     getValues,
     setValue,
-
+    reset,
+    trigger,
     formState: {
       errors,
       touchedFields,
@@ -48,6 +52,12 @@ const YouTubeForm = () => {
       submitCount,
     },
   } = form;
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   // console.log({ touchedFields, dirtyFields, isDirty, isValid });
   console.log({ isSubmitting, isSubmitted, isSubmitSuccessful, submitCount });
@@ -67,7 +77,8 @@ const YouTubeForm = () => {
       shouldTouch: true,
     });
   };
-  const onSubmit = () => console.log('Form submitted');
+
+  const onSubmit = data => console.log('Form submitted', data);
 
   const watchUsername = watch('username');
   const onError = errors => {
@@ -130,8 +141,15 @@ const YouTubeForm = () => {
                   notBlackListed: fieldValue => {
                     return (
                       !fieldValue.endsWith('baddomain.com') ||
-                      'This domain is not support*'
+                      'This domain is not supported*'
                     );
+                  },
+                  emailAvailable: async fieldValue => {
+                    const response = await fetch(
+                      `https://jsonplaceholder.typicode.com/users?email=${fieldValue}`
+                    );
+                    const data = await response.json();
+                    return data.length === 0 || 'Email is already taken*';
                   },
                   /* validate: fieldValue => {
                 return (
@@ -245,7 +263,7 @@ const YouTubeForm = () => {
             </>
           </div>
 
-          <div style={btnContainer}>
+          <div className={css.containerBtn}>
             {/* Get Value Button */}
             <GetValueBtn handleGetValues={handleGetValues} />
 
@@ -258,7 +276,10 @@ const YouTubeForm = () => {
               isValid={isValid}
               onSubmit={onSubmit}
               isSubmitting={isSubmitting}
+              errors={onError}
             />
+            <ResetBtn reset={reset} />
+            <ValidateBtn trigger={trigger} />
           </div>
         </form>
         {/* <DevTool control={control} /> */}

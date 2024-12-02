@@ -38,7 +38,7 @@ input[type='phone'] {
 
   @media (width > 767px) {
     margin: 0;
-    width: 400px;
+    width: 500px;
   }
 }
 /* input[type='number'] {
