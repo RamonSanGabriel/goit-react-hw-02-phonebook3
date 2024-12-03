@@ -42,8 +42,8 @@ const YouTubeForm = () => {
     trigger,
     formState: {
       errors,
-      touchedFields,
-      dirtyFields,
+      // touchedFields,
+      // dirtyFields,
       isDirty,
       isValid,
       isSubmitting,
